@@ -1,0 +1,27 @@
+<H1>Welcome!</H1>
+
+<div class="container">
+  Welcome {{name}}. Below are your Backtest results 
+</div>
+
+<div class="container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Tested Date</th>
+          <th>is Completed?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!--   for (Todo todo: todos) {  -->
+                <tr *ngFor="let BtResult of BtResults">
+                  <td>{{BtResult.description}}</td>
+                  <td>{{BtResult.testedDate | date | uppercase}}</td>
+                  <td>{{BtResult.completed}}</td>
+                </tr>
+        <!-- } -->
+      </tbody>
+  
+    </table>
+  </div>
