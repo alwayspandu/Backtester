@@ -15,6 +15,7 @@ export class BtResult {
 
 export class BtInput {
   constructor(
+    public description: string,
     public scripName: string,
     public slippage: number,
     public entryTime: string,
@@ -42,7 +43,8 @@ export class BtResultDetail {
     public fromDate: Date,
     public toDate: Date,
     public profit_loss: number = 0.00,
-    public intraDay: boolean
+    public intraDay: boolean,
+    public backTestInput : BtInput
   ){
 
   }
@@ -68,9 +70,12 @@ export class BackTestService {
     return this.http.get<BtResultDetail>(`${BACKTEST_URL}/users/${username}/btresults/${id}`);
   }
 
-  getAbackTest(username: any, id: any){
-    return this.http.get<BtResult>(`${BACKTEST_URL}/users/${username}/btresults/${id}`);
+  deleteBackTest(username: any, id: any){
+    return this.http.delete(`${BACKTEST_URL}/users/${username}/btresults/${id}`);
   }
 
+  createABackTest(username: any,backTestInput : BtInput){
+    return this.http.post(`${BACKTEST_URL}/users/${username}/btresult`,backTestInput);
+  }
 
 }
